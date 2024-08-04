@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBGE</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        html, body {
+            background-color: rgb(233, 233, 233);
+            max-width: 100vw;
+        }
+
+        header {
+            background-image: linear-gradient(to top, rgb(23, 58, 122), rgb(37, 92, 194));
+            min-height: 100px;
+        }
+
+        header h1 {
+            color: rgb(204, 227, 250);
+            text-align: center;
+            text-shadow: 2px 2px 4px black;
+            padding: 30px 0px 20px 0px;
+        }
+        
+        header p {
+            color: rgb(209, 232, 255);
+            text-align: center;
+            text-shadow: 2px 2px 2px black;
+            padding-bottom: 20px;
+        }
+
+        main {
+            display: block;
+            background-color: rgb(209, 196, 120);
+            
+            width: 600px;
+            height: 73.26vh;
+            box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.74);
+            padding: 40px 30px;
+            margin: auto;
+        }
+
+        section {
+            display: block;
+            background-color: white;
+            width: 500px;
+            height: 200px;
+            padding: 30px;
+            margin: auto;
+            border: 1px solid rgba(0, 0, 0, 0.479);
+            border-radius: 20px;
+            box-shadow: 0.5px 0.5px 10px rgba(0, 0, 0, 0.61);
+        }
+
+        section > p#top {
+            margin-top: 10px;
+        }
+
+        label {
+            text-shadow: 0.2px 0.2px rgba(0, 0, 0, 0.5);
+        }
+
+        input {
+            margin-top: 20px;
+        }
+
+        input#btn {
+            font-size: 1em;
+            text-shadow: 0.3px 0.3px rgba(0, 0, 0, 0.616);
+            box-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.301);
+            padding: 5px;
+        }
+
+       div#resultado {
+            color: black;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-image: linear-gradient(to top, rgb(23, 58, 122), rgb(37, 92, 194));
+            height: 50px;
+        }
+
+        footer p {
+            color: rgb(209, 232, 255);
+            text-align: center;
+            text-shadow: 2px 2px 2px black;
+            padding: 15px;
+        }
+
+        footer a {
+            color: rgb(220, 237, 253);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: rgb(236, 242, 248);
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Qual a sua nacionalidade?</h1>
+        <p>Consulte seu status no Brasil</p>
+    </header>
+    <main>
+        <section>
+            <p id="top">
+                <label for="isexo">Sexo:</label>
+                <input type="radio" name="sexo" id="isexoM"> Masculino
+                <input type="radio" name="sexo" id="isexoF"> Feminino
+            </p>
+
+            <p>
+                <label for="iorigem">País de origem:</label>
+                <input type="text" name="origem" id="iorigem" required autocomplete="country-name" placeholder="Ex: Brasil">
+            </p>
+
+            <input type="submit" value="Consultar status" id="btn" onclick="consulta()">
+
+            <div id="resultado">
+                
+            </div>
+        </section>
+
+        <script>
+            function titleCase(name) {
+                return name.replace(/\w\S*/g, text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase())
+            }
+
+            function consulta() {
+                var origem = document.querySelector('input#iorigem').value.toLowerCase()
+                var res = document.querySelector('div#resultado')
+                var status = ""
+                if (origem == 'brasil') {
+                    if (document.getElementById('isexoM').checked) {
+                        status = 'Brasileiro'
+                        res.innerHTML = `<p>Sendo do ${titleCase(origem)}, você é <strong>${status}</strong>.</p>`
+                    }
+
+                    if (document.getElementById('isexoF').checked) {
+                        status = 'Brasileira'
+                        res.innerHTML = `<p>Sendo do ${titleCase(origem)}, você é <strong>${status}</strong>.</p>`
+                    }
+                } else {
+                    if (document.getElementById('isexoM').checked) {
+                        status = 'Estrangeiro'
+                        res.innerHTML = `<p>Vindo de ${titleCase(origem)}, você é <strong>${status}</strong>.</p>`
+                    }
+
+                    if (document.getElementById('isexoF').checked) {
+                        status = 'Estrangeira'
+                        res.innerHTML = `<p>Vindo de ${titleCase(origem)}, você é <strong>${status}</strong>.</p>`
+                    }
+                    res.innerHTML = `<p>Vindo de ${titleCase(origem)}, você é <strong>${status}</strong>.</p>`
+                }
+            }
+        </script>
+    </main>
+    <footer>
+        <p>Site desenvolvido por <a href="https://github.com/arturtinoco" target="_blank" rel="external">Artur Tinoco</a></p>
+    </footer>
+</body>
+</html>
