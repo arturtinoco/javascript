@@ -6,6 +6,7 @@ body {
 header {
     color: white;
     text-align: center;
+    text-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 
 section {
@@ -17,8 +18,15 @@ section {
     margin: auto;
 }
 
+img {
+    margin-top: 20px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.664);
+}
+
 footer {
     color: white;
     text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.486);
     font-style: italic;
 }
