@@ -17,6 +17,11 @@ section {
     margin: auto;
 }
 
+select#result {
+    width: 180px;
+    min-height: 100px;
+}
+
 footer {
     color: white;
     text-align: center;
